@@ -1,0 +1,118 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400i, 700, 800i;
+  
+  /* Primary colors */
+  --color-primary: hsl(259, 100%, 65%);
+  --color-primary-variant: hsl(0, 100%, 67%);
+
+  /* Neutral colors*/
+  --white: hsl(0, 0%, 100%);
+  --off-white: hsl(0, 0%, 94%);
+  --light-gray: hsl(0, 0%, 86%);
+  --smokey-gray: hsl(0, 1%, 44%);
+  --off-black: hsl(0, 0%, 8%);
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  font-size: 32px;
+  background-color: var(--light-gray);
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+main {
+  background-color: var(--white);
+  border-top-left-radius: 1.5rem;
+  border-top-right-radius: 1.5rem;
+  border-bottom-left-radius: 1.5rem;
+  border-bottom-right-radius: 30%;
+}
+
+form > fieldset > div > input {
+  border-color: var(--light-gray);
+}
+
+form > fieldset > div > input:hover {
+  cursor: pointer;
+}
+
+form > fieldset > div > input:active {
+  border-color: var(--smokey-gray);
+}
+
+form > fieldset > div > label {
+  color: var(--smokey-gray);
+  font-family: 'Poppins';
+}
+
+form > fieldset > div > span {
+  color: var(--color-primary-variant);
+}
+
+button > svg {
+  font-size: 4rem;
+  color: var(--off-black);
+  transition: all 0.2s;
+}
+
+button > svg:active {
+  color: var(--color-primary);
+}
+
+h2 {
+  color: var(--color-primary);
+  animation: fadeIn 1s ease-in-out;
+}
+
+h2 > span {
+  color: var(--off-black);
+}
+
+/***** Keyframes *****/
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/***** End Keyframes *****/
+
+/***** Media queries *****/
+
+@media only screen and (max-width: 600px) {
+  body {
+    font-size: 24px;
+  }
+
+  button {
+    position: relative;
+    right: auto;
+    left: auto;
+    z-index: 10;
+  }
+
+  button > svg {
+    font-size: 3rem;
+    color: var(--off-black);
+    transition: all 0.2s;
+  }
+}
+
+/***** End Media queries *****/
