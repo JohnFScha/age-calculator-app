@@ -72,9 +72,12 @@ button > svg:active {
   color: var(--color-primary);
 }
 
+section.fadeIn {
+  animation: fadeIn 1s ease-in-out;
+}
+
 h2 {
   color: var(--color-primary);
-  animation: fadeIn 1s ease-in-out;
 }
 
 h2 > span {

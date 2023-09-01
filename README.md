@@ -12,7 +12,6 @@ This is a solution to the [Age calculator app challenge on Frontend Mentor](http
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
   - [Continued development](#continued-development)
-  - [Useful resources](#useful-resources)
 - [Author](#author)
 - [Acknowledgments](#acknowledgments)
 
@@ -33,7 +32,7 @@ Users should be able to:
   - The date is invalid e.g. 31/04/1991 (there are 30 days in April)
 - View the optimal layout for the interface depending on their device's screen size
 - See hover and focus states for all interactive elements on the page
-- **Bonus**: See the age numbers animate to their final number when the form is submitted
+- See the age numbers animate to their final number when the form is submitted
 
 ### Screenshot
 
@@ -41,71 +40,79 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Solution URL: [GitHub repo](https://github.com/JohnFScha/age-calculator-app)
+- Live Site URL: [Deploy on vercel](https://age-calculator-app-ten-delta.vercel.app/)
 
 ## My process
 
+I used this challenge to up my styling skills with Tailwind.css. This tools is very powerful as it enables you to customize you breakpoints for responsive behaviour. I set up a single small screen (mobile) breakpoint at max-width: 600px and tested it on even smaller breakpoints.
+
+I ran into a common issue during development, as the calculated age was stored in a sibling component of the one which "printed" it. So my workaround that issue was setting up a siple React-Redux store, so I could access the calculated age state wherever I needed it. Compiling with Redux-Devtools is realy handy as you can keep track of how the state initializes and then see in real time which dispatched action updates it.
+
 ### Built with
 
-- Semantic HTML5 markup
-- CSS custom properties
-- Flexbox
-- CSS Grid
+- CSS Flexbox
 - Mobile-first workflow
 - [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- [Vite](https://vitejs.dev/guide/) - React framework
+- [Tailwind.css](https://tailwindcss.com/docs/installation) - For styles
+- [React-Redux](https://react-redux.js.org/introduction/getting-started) - For state management
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+As stated in the overview, tailwind provides a simple way of configuring your app's styles directly from it's config.js file. In the code below, I defined a personal breakpoint of 600px max width for applying styles:
 
-To see how you can add code snippets, see below:
-
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
-```css
-.proud-of-this-css {
-  color: papayawhip;
-}
-```
 ```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    screens: {
+      'mobile': {'max': '600px'},
+      // => @media (max-width: 600px) { ... }
+    }
+  }
 }
 ```
+These breakpoints are later used inside the `className` property of the JSX, like so:
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+```jsx
+<h2 className="text-7xl mobile:text-5xl ...">
+```
+Tailwind takes care of the rest!
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+<hr>
+
+Another thing of note is the redux store:
+```js
+import { legacy_createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
+import rootReducer from './rootReducer';
+
+const store = legacy_createStore(rootReducer, composeWithDevTools())
+
+export default store;
+```
+I used the `legacy_createStore` function as I am yet learning the ropes of state management. But as I stated, I implemented the Redux devtools which helped me keep track of when and how the state updated via de button which dispatched the required action.
+
 
 ### Continued development
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I'm really getting into React's state management tools. I plan on a near future to move to Zustand when the Redux concepts really become second nature.
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
-
-### Useful resources
-
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
-
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
+Also, tailwind is quickly becoming my go-to CSS framework. I used styled-components before, and even Material UI... But none of them come close to the practicality that tailwind brings to the table! I plan on becoming an expert at it down the road.
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
+- Website - [John F. Scha](https://www.johnfscha.site)
+- Frontend Mentor - [@SonicFran99](https://www.frontendmentor.io/profile/SonicFran99)
+- LinkedIn - [@John F Schallibaum](https://www.linkedin.com/in/john-f-schallibaum-886530225/)
 
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
 
 ## Acknowledgments
 
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
+I got the idea of starting to make myself known in a practical manner, hands-on, producing with what knowledge I've gather... From none other that the one and only: [Goncy!](https://www.linkedin.com/in/gonzalopozzo/) Love this man, and I really encourage spanish speakers to get in touch with him. He streams regularly on tuesdays in his [Twitch account](https://www.twitch.tv/goncypozzo) at 19:00 GMT-3 (Buenos Aires local time).
 
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**

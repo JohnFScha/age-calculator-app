@@ -7,7 +7,7 @@ export default {
   theme: {
     screens: {
       'mobile': {'max': '600px'},
-      // => @media (min-width: 375px) { ... }
+      // => @media (max-width: 600px) { ... }
     },
     extend: {},
   },
